@@ -94,6 +94,7 @@ Cylon.robot({
         my.ollie.color(0xFF0000);
         break;
       case "pink":
+      case "purple":
         my.ollie.color(0xFF00FF);
         break;
       case "yellow":
@@ -107,7 +108,15 @@ Cylon.robot({
       }
     }
     
+    
+    
     my.ollie.start(function() {
+      
+      my.ollie.detectCollisions(function() {
+        console.log("Aie !!!!");
+        console.log("Aie !!!!");
+        console.log("Aie !!!!");  
+      })
       
       setInterval(function() {
 
