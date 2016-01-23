@@ -2,7 +2,7 @@
   console.log("Starting");
 
   $(document).on("keydown", function (e) {
-    console.log(e.keyCode)
+
     switch (e.keyCode) {
     case 38:
       post("north");
