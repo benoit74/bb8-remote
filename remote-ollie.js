@@ -19,9 +19,28 @@ Cylon.robot({
     var lastWebId =0;
     
     
+    var setColorFromSpeed = function(speed) {
+      if (speed <= 0) {
+        my.ollie.color(0x00FF00);
+      } else if (speed <= 20) {
+        my.ollie.color(0x00FFEE);
+      } else if (speed <= 40) {
+        my.ollie.color(0x0077FF);
+      } else if (speed <= 60) {
+        my.ollie.color(0x0000FF);
+      } else if (speed <= 80) {
+        my.ollie.color(0x9900FF);
+      } else if (speed <= 100) {
+        my.ollie.color(0xFF00BB);
+      } else {
+        my.ollie.color(0xFF0000);
+      }
+    }
+    
     var rollf = function(angle, speed) {
       console.log("Going " + speed + "mph at " + angle + "degrees");
       my.ollie.roll(speed,angle);
+      setColorFromSpeed(speed);
     }
     
     var hex2rgb = function(hex) {
@@ -73,12 +92,16 @@ Cylon.robot({
         rollf(angle,speed);
         break;
       case "slow":
-        speed -= 30;
-        rollf(angle,speed);
+        if (speed > 0) {
+          speed -= 20;
+          rollf(angle,speed);
+        }
         break;
       case "fast":
-        speed += 30;
-        rollf(angle,speed);
+        if (speed < 120) {
+          speed += 20;
+          rollf(angle,speed);
+        }
         break;
       case "stop":
         speed = 0;
